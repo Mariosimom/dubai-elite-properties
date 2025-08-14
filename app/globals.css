@@ -1,0 +1,5 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+:root{ --header-h:72px; }
+body{ @apply text-gray-900 bg-white; }
+.container-bleed{ @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+.card{ @apply bg-white rounded-2xl shadow-card; }
