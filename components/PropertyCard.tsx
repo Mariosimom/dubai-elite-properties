@@ -4,14 +4,21 @@ import Modal from "./Modal";
 import Gallery from "./Gallery";
 import { useState } from "react";
 
+const PLACEHOLDER =
+  "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&auto=format&fit=crop&w=1600";
+
 export type Property = {
-  id: string; title: string; location: string; priceAED: string; beds: number; baths: number; area: string; image: string; images?: string[];
+  id: string; title: string; location: string; priceAED: string; beds: number; baths: number; area: string;
+  image: string; images?: string[];
   reraNo?: string; permitNo?: string; dedLicense?: string; brokerReraCard?: string; serviceCharges?: string;
   paymentPlan?: { label: string; value: string }[]; handover?: string; developer?: string; amenities?: string[];
 };
 
-export default function PropertyCard({ p }: { p: Property }){
-  const [open,setOpen]=useState(false);
+export default function PropertyCard({ p }: { p: Property }) {
+  const [open, setOpen] = useState(false);
+  const imageSrc = p.image && p.image.trim() ? p.image : PLACEHOLDER;
+  const gallery = (p.images && p.images.length ? p.images : [imageSrc]).map((u) => (u && u.trim() ? u : PLACEHOLDER));
+  // ...then use imageSrc and gallery below
   return (<>
     <div className="card overflow-hidden cursor-pointer" onClick={()=>setOpen(true)}>
       <div className="relative h-48"><Image src={p.image} alt={p.title} fill className="object-cover" sizes="(min-width:1024px) 33vw, 100vw"/></div>
